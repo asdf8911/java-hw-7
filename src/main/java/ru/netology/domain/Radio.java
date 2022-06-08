@@ -1,5 +1,14 @@
 package ru.netology.domain;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data (staticConstructor="of")
+
 public class Radio {
     private int quantityRStation = 10;   // кол-во радиостанций - ТРЕБОВАНИЕ 1
     private int numCurrentRStation; // номер радиостанции
@@ -7,19 +16,22 @@ public class Radio {
     private int maxCurrentVolume = 100;
     private int minCurrentVolume = 0;
 
-    public Radio() { // конструктор по умолчанию
-    }
+
+    /*public Radio() { // конструктор по умолчанию
+    }*/
     public Radio(int quantityRStation) { // конструктор для указания кол-ва радиостанций
         this.quantityRStation = quantityRStation;
     }
 
-    public int getQuantityRStation() {
+
+
+    /*public int getQuantityRStation() {
         return quantityRStation;
     }
 
     public int getNumCurrentRStation() { // 1 ном. текущ станции от 0 до кол-ва радиостанций - 1
         return numCurrentRStation;
-    }
+    }*/
 
     public void nextRStation() { // 2 next station - ТРЕБОВАНИЕ 3 СОБЛЮДАЕТСЯ
         if (numCurrentRStation < quantityRStation - 1) {
@@ -47,9 +59,9 @@ public class Radio {
         numCurrentRStation = newNumCurrentRStation;
     }
 
-    public int getCurrentVolume() { // 5
+    /*public int getCurrentVolume() { // 5
         return currentVolume;
-    }
+    }*/
 
     public void setCurrentVolume(int currentVolume) { // 6
         if (currentVolume < minCurrentVolume) {
