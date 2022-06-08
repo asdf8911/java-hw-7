@@ -1,37 +1,47 @@
 package ru.netology.domain;
 
 public class Radio {
+    private int quantityRStation = 10;   // кол-во радиостанций - ТРЕБОВАНИЕ 1
+    private int numCurrentRStation; // номер радиостанции
+    private int currentVolume;      // громкость
+    private int maxCurrentVolume = 100;
+    private int minCurrentVolume = 0;
 
-    private int numCurrentRStation;
-    private int currentVolume;
-//только локальные переменные можно создавать пустыми, незаполненными
-//все остальные переменные автоматически заполняются
+    public Radio() { // конструктор по умолчанию
+    }
+    public Radio(int quantityRStation) { // конструктор для указания кол-ва радиостанций
+        this.quantityRStation = quantityRStation;
+    }
 
-    public int getNumCurrentRStation() { // 1 ном. текущ станции от 0 до 9
+    public int getQuantityRStation() {
+        return quantityRStation;
+    }
+
+    public int getNumCurrentRStation() { // 1 ном. текущ станции от 0 до кол-ва радиостанций - 1
         return numCurrentRStation;
     }
 
-    public void nextRStation() { // 2 next station
-        if (numCurrentRStation < 9) {
+    public void nextRStation() { // 2 next station - ТРЕБОВАНИЕ 3 СОБЛЮДАЕТСЯ
+        if (numCurrentRStation < quantityRStation - 1) {
             numCurrentRStation = numCurrentRStation + 1;
         } else {
             numCurrentRStation = 0;
         }
     }
 
-    public void prevRStation() { // 3 prev station
+    public void prevRStation() { // 3 prev station - ТРЕБОВАНИЕ 4 СОБЛЮДАЕТСЯ
         if (numCurrentRStation > 0) {
             numCurrentRStation = numCurrentRStation - 1;
         } else {
-            numCurrentRStation = 9;
+            numCurrentRStation = quantityRStation - 1;
         }
     }
 
-    public void setNumCurrentRStation(int newNumCurrentRStation) { // 4 указание номера станции
+    public void setNumCurrentRStation(int newNumCurrentRStation) { // 4 указание номера станции - ТРЕБОВАНИЕ 2
         if (newNumCurrentRStation < 0) {
             return;
         }
-        if (newNumCurrentRStation > 9) {
+        if (newNumCurrentRStation > quantityRStation - 1) {
             return;
         }
         numCurrentRStation = newNumCurrentRStation;
@@ -42,17 +52,17 @@ public class Radio {
     }
 
     public void setCurrentVolume(int currentVolume) { // 6
-        if (currentVolume < 0) {
+        if (currentVolume < minCurrentVolume) {
             return;
         }
-        if (currentVolume > 10) {
+        if (currentVolume > maxCurrentVolume) {
             return;
         }
         this.currentVolume = currentVolume;
     }
 
     public void increaseVolumeByOne() { // 7
-        if (currentVolume < 10) {
+        if (currentVolume < maxCurrentVolume) {
             currentVolume = currentVolume + 1;
         } else {
             return;
@@ -60,7 +70,7 @@ public class Radio {
     }
 
     public void decreaseVolumeByOne() { // 8
-        if (currentVolume > 0) {
+        if (currentVolume > minCurrentVolume) {
             currentVolume = currentVolume - 1;
         } else {
             currentVolume = 0;

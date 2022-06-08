@@ -7,6 +7,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RadioTest {
 
     @Test
+    void shouldSetQuantityRStation() {
+        Radio radio = new Radio(30);
+        Radio radio1 = new Radio(14);
+
+        assertEquals(30, radio.getQuantityRStation());
+        assertEquals(14, radio1.getQuantityRStation());
+    }
+
+    @Test
     void showNumCurrentRStation() { // 1
         Radio radio = new Radio();
 
@@ -134,7 +143,7 @@ public class RadioTest {
     void showSetCurrentVolume2() { // 6.2
         Radio radio = new Radio();
 
-        radio.setCurrentVolume(11);
+        radio.setCurrentVolume(111);
 
         int actual = radio.getCurrentVolume();
         int expected = 0;
@@ -157,12 +166,12 @@ public class RadioTest {
     @Test
     void showVolumeAfterIncreaseByOne1() { // 7.1
         Radio radio = new Radio();
-        radio.setCurrentVolume(10);
+        radio.setCurrentVolume(100);
 
         radio.increaseVolumeByOne();
 
         int actual = radio.getCurrentVolume();
-        int expected = 10;
+        int expected = 100;
 
         assertEquals(expected, actual);
     }
